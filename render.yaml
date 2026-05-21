@@ -1,0 +1,33 @@
+services:
+  - type: web
+    name: mihe-scheduler
+    env: python
+    region: sydney
+    plan: free
+
+    # Build phase
+    buildCommand: |
+      pip install -r backend/requirements.txt && \
+      cd frontend && npm install && npm run build && cd ..
+
+    # Start command
+    startCommand: |
+      cd backend && \
+      uvicorn main:app --host 0.0.0.0 --port $PORT
+
+    # Environment variables (set these in Render dashboard)
+    envVars:
+      - key: ENV
+        value: production
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DATABASE_URL
+        value: sqlite:///./scheduler.db
+      - key: FRONTEND_ORIGIN
+        sync: false
+
+    # Mount for persistent database
+    disk:
+      name: scheduler-db
+      mountPath: /opt/render
+      sizeGB: 1
