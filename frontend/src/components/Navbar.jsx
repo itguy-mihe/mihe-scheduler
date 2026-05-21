@@ -3,9 +3,9 @@ import { useAuth } from '../context/AuthContext'
 import toast from 'react-hot-toast'
 
 const navLinks = [
-  { to: '/dashboard',  label: 'Dashboard',  always: true },
+  { to: '/dashboard',    label: 'Dashboard', always: true },
   { to: '/meetings/new', label: 'New Poll',  adminOnly: true },
-  { to: '/analytics',  label: 'Analytics',  adminOnly: true },
+  { to: '/summary',      label: 'Summary',   adminOnly: true },
 ]
 
 export default function Navbar() {

@@ -7,6 +7,7 @@ from starlette.middleware.sessions import SessionMiddleware
 
 from db import init_db
 from routers import auth, meetings, polls
+from seed import seed
 
 SECRET_KEY = os.environ.get("SECRET_KEY", "dev-secret-change-me")
 IS_PROD = os.environ.get("ENV", "dev") == "production"
@@ -16,6 +17,7 @@ FRONTEND_ORIGIN = os.environ.get("FRONTEND_ORIGIN", "http://localhost:5173")
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     init_db()
+    seed()   # create admin user + sample meeting if DB is empty
     yield
 
 

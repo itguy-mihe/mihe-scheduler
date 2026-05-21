@@ -6,7 +6,7 @@ import Dashboard from './pages/Dashboard'
 import CreateMeeting from './pages/CreateMeeting'
 import VotePoll from './pages/VotePoll'
 import PollResults from './pages/PollResults'
-import Analytics from './pages/Analytics'
+import Summary from './pages/Summary'
 
 function PrivateRoute({ children, adminOnly = false }) {
   const { user, loading } = useAuth()
@@ -42,7 +42,7 @@ export default function App() {
         <Route index element={<Navigate to="/dashboard" replace />} />
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="meetings/new" element={<PrivateRoute adminOnly><CreateMeeting /></PrivateRoute>} />
-        <Route path="analytics" element={<PrivateRoute adminOnly><Analytics /></PrivateRoute>} />
+        <Route path="summary" element={<PrivateRoute adminOnly><Summary /></PrivateRoute>} />
       </Route>
 
       <Route path="*" element={<Navigate to="/dashboard" replace />} />

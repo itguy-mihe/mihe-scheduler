@@ -109,7 +109,14 @@ export default function VotePoll() {
     <div className="min-h-screen bg-navy-900">
       {/* Header */}
       <div className="bg-gradient-to-r from-navy-800 to-navy-700 border-b border-white/10">
-        <div className="max-w-3xl mx-auto px-4 py-8">
+        <div className="max-w-3xl mx-auto px-4 pt-4 pb-8">
+          {/* Home button */}
+          <Link to="/dashboard" className="inline-flex items-center gap-1.5 text-slate-400 hover:text-white text-sm mb-4 transition-colors group">
+            <svg className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+            </svg>
+            Home
+          </Link>
           <div className="flex items-center gap-2 mb-1">
             <span className={poll.status === 'open' ? 'badge-open' : poll.status === 'finalized' ? 'badge-final' : 'badge-closed'}>
               {poll.status.charAt(0).toUpperCase() + poll.status.slice(1)}

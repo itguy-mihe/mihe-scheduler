@@ -83,9 +83,16 @@ def create_meeting(
 @router.get("")
 def list_meetings(
     session: Session = Depends(get_session),
-    user=Depends(require_admin),
+    user=Depends(require_user),
 ):
-    meetings = session.exec(select(Meeting).order_by(Meeting.created_at.desc())).all()
+    if user.role == "admin":
+        meetings = session.exec(select(Meeting).order_by(Meeting.created_at.desc())).all()
+    else:
+        meetings = session.exec(
+            select(Meeting)
+            .where(Meeting.status == "open")
+            .order_by(Meeting.created_at.desc())
+        ).all()
     return [_meeting_summary(m, session) for m in meetings]
 
 
