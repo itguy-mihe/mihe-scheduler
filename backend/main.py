@@ -43,6 +43,10 @@ app.include_router(auth.router)
 app.include_router(meetings.router)
 app.include_router(polls.router)
 
+@app.get("/api/health")
+def health():
+    return {"status": "ok"}
+
 # Serve built React app in production
 if IS_PROD:
     app.mount("/", StaticFiles(directory="../frontend/dist", html=True), name="frontend")
