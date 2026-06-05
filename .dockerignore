@@ -1,0 +1,13 @@
+**/__pycache__/
+**/*.pyc
+**/*.pyo
+**/.env
+**/node_modules/
+frontend/dist/
+backend/scheduler.db
+.git/
+.gitignore
+render.yaml
+DEPLOYMENT.md
+README.md
+build.sh
